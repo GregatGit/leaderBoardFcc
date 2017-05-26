@@ -22,6 +22,11 @@ module.exports = {
         }
       },
       {
+        test: /\.json$/,
+        exclude: /(node_modules)/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=20000'
       },

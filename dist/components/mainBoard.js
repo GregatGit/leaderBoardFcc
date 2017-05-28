@@ -1,10 +1,37 @@
 import React, { Component } from 'react'
 import recentText from '../../data/recent.json'
 import CamperRow from './camperRow'
-
+const recentApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
+const allTimeApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime'
+const stateProps = ['recent', 'allTime']
 class Board extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      recent: '',
+      alltime: ''
+    }
+    this.downloadData(recentApi, 'recent')
+  }
+  
+  downloadData(url, stateProp) {
+    fetch(url)  
+      .then(  
+        (response) => {  
+          if (response.status !== 200) {  
+            console.log('Looks like there was a problem. Status Code: ' +  
+            response.status);  
+            return;  
+      }
+      // Examine the text in the response  
+      response.json().then((data) => {  
+        this.setState({stateProp: data})  
+      });  
+    }  
+  )  
+  .catch((err) => {  
+    console.log('Fetch Error :-S', err);  
+  });
   }
 
   render () {
@@ -21,8 +48,8 @@ class Board extends Component {
         <h1>Camper Leader Board</h1>
         <p>the list</p>
         <table>
-        <tbody>
-         {camperRows}
+          <tbody>
+            {camperRows}
            </tbody>
         </table>
       </div>
@@ -31,7 +58,3 @@ class Board extends Component {
 }
 
 export default Board
-
-/*
-[{"username":"anthonygallina1","img":"https://avatars.githubusercontent.com/u/11003055?v=3","alltime":4672,"recent":537,"lastUpdate":"2017-05-24T13:51:09.512Z"},{"username":"indefinite0212","img":"https://avatars1.githubusercontent.com/u/26141499?v=3","alltime":1019,"recent":525,"lastUpdate":"2017-05-24T13:22:36.041Z"},{"username":"diomed","img":"https://avatars3.githubusercontent.com/u/72777?v=3","alltime":4263,"recent":519,"lastUpdate":"2017-05-24T13:51:08.588Z"},
-*/

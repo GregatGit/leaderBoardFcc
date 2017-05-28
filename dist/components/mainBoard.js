@@ -1,39 +1,35 @@
 import React, { Component } from 'react'
 import recentText from '../../data/recent.json'
 import CamperRow from './camperRow'
+// import dataRecent from '../../data/downData'
 const recentApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
 const allTimeApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime'
-const stateProps = ['recent', 'allTime']
+
 class Board extends Component {
   constructor(props){
     super(props)
     this.state = {
-      recent: '',
-      alltime: ''
+      recent: ''
     }
-    this.downloadData(recentApi, 'recent')
-  }
-  
-  downloadData(url, stateProp) {
-    fetch(url)  
-      .then(  
-        (response) => {  
-          if (response.status !== 200) {  
-            console.log('Looks like there was a problem. Status Code: ' +  
-            response.status);  
-            return;  
-      }
-      // Examine the text in the response  
-      response.json().then((data) => {  
-        this.setState({stateProp: data})  
-      });  
-    }  
-  )  
-  .catch((err) => {  
-    console.log('Fetch Error :-S', err);  
-  });
+    this.setState({recent: this.getData(recentApi)})
   }
 
+  getData (url) {
+    fetch(url)
+      .then((response) => {
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' + response.status)
+          return
+        }
+        // Examine the text in the response
+        response
+          .json()
+          .then((data) => data)
+      })
+      .catch(function (err) {
+        console.log('Fetch Error :-S', err)
+    })
+}
   render () {
     const camperRows = recentText.map((user, index) => {
       return (<CamperRow

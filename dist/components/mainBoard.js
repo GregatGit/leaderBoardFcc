@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import CamperRow from './camperRow'
-import dataDown from '../../data/downData'
 const recentApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
 const alltimeApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime'
 

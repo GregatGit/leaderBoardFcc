@@ -15,7 +15,7 @@ class Board extends Component {
       apiCalled: false,
       onTheBoard: 'recent'
     }
-    this.changeList.bind(this)
+    this.changeList = this.changeList.bind(this)
   }
 
 // api calls
@@ -46,7 +46,7 @@ componentDidMount() {
   })
 } // componentDidMount
 
-changeList = () => {
+changeList  () {
   let str = 'alltime'
   if (this.state.onTheBoard === 'alltime')
     str = 'recent'

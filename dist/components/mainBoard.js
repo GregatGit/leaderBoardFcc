@@ -47,17 +47,28 @@ componentDidMount() {
 } // componentDidMount
 
 changeList  () {
-  let str = 'alltime'
-  if (this.state.onTheBoard === 'alltime')
-    str = 'recent'
-  this.setState({onTheBoard: str})
+  if (this.state.apiCalled){
+    let str = 'alltime'
+    if (this.state.onTheBoard === 'alltime')
+      str = 'recent'
+    this.setState({onTheBoard: str})
+  }
 }
 
 render() {
   let camperRows = 'campers details coming'
+  let buttonText = 'recent/alltime'
   if (this.state.apiCalled) {
-    if (this.state.recentLoaded) {
+    if (this.state.onTheBoard === 'recent') {
       camperRows = this.state.recent.map((user, index) => {
+          return (<CamperRow
+            position={index + 1}
+            name={user.username}
+            recentPoints={user.recent}
+            allTimePoints={user.alltime}/>)
+        })
+    }else{
+      camperRows = this.state.alltime.map((user, index) => {
           return (<CamperRow
             position={index + 1}
             name={user.username}
@@ -66,10 +77,11 @@ render() {
         })
     }
   }
+
     return (
       <div>
         <h1>Camper Leader Board</h1>
-        <button onClick={this.changeList}>Hello</button>
+        <button onClick={this.changeList}>{buttonText}</button>
         <p>the list</p>
         <table>
           <tbody>

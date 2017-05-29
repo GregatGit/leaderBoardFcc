@@ -58,39 +58,36 @@ changeList  () {
 render() {
   let camperRows = 'campers details coming'
   let buttonText = 'recent/alltime'
+  
   if (this.state.apiCalled) {
+    let myArr = []
     if (this.state.onTheBoard === 'recent') {
-      camperRows = this.state.recent.map((user, index) => {
-          return (<CamperRow
-            position={index + 1}
-            name={user.username}
-            recentPoints={user.recent}
-            allTimePoints={user.alltime}/>)
-        })
-    }else{
-      camperRows = this.state.alltime.map((user, index) => {
-          return (<CamperRow
-            position={index + 1}
-            name={user.username}
-            recentPoints={user.recent}
-            allTimePoints={user.alltime}/>)
-        })
+      myArr = this.state.recent
+    } else {
+      myArr = this.state.alltime
     }
+    camperRows = myArr.map((user, index) => {
+      return (<CamperRow
+        position={index + 1}
+        name={user.username}
+        recentPoints={user.recent}
+        allTimePoints={user.alltime}/>)
+    })
   }
 
-    return (
-      <div>
-        <h1>Camper Leader Board</h1>
-        <button onClick={this.changeList}>{buttonText}</button>
-        <p>the list</p>
-        <table>
-          <tbody>
-            {camperRows}
-           </tbody>
-        </table>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h1>Camper Leader Board</h1>
+      <button onClick={this.changeList}>{buttonText}</button>
+      <p>the list</p>
+      <table>
+        <tbody>
+          {camperRows}
+        </tbody>
+      </table>
+    </div>
+  )
+}
 }
 
 export default Board

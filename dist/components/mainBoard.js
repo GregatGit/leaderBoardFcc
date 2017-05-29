@@ -15,6 +15,7 @@ class Board extends Component {
       apiCalled: false,
       onTheBoard: 'recent'
     }
+    this.changeList.bind(this)
   }
 
 // api calls
@@ -45,6 +46,13 @@ componentDidMount() {
   })
 } // componentDidMount
 
+changeList = () => {
+  let str = 'alltime'
+  if (this.state.onTheBoard === 'alltime')
+    str = 'recent'
+  this.setState({onTheBoard: str})
+}
+
 render() {
   let camperRows = 'campers details coming'
   if (this.state.apiCalled) {
@@ -61,6 +69,7 @@ render() {
     return (
       <div>
         <h1>Camper Leader Board</h1>
+        <button onClick={this.changeList}>Hello</button>
         <p>the list</p>
         <table>
           <tbody>

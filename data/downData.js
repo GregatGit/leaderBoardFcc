@@ -20,6 +20,5 @@ const getData = (url) => {
 }
 
 const dataRecent = getData(urlRecent)
-//const dataAllTime = getData(urlAllTime)
 
 export default dataRecent

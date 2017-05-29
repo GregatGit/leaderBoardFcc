@@ -9,36 +9,55 @@ class Board extends Component {
   constructor(props){
     super(props)
     this.state = {
-      recent: ''
+      recent: '',
+      recentLoaded: false,
+      alltimeLoaded: false,
+      apiCalled: false,
+      onTheBoard: 'recent'
     }
-    this.setState({recent: this.getData(recentApi)})
   }
 
-  getData (url) {
-    fetch(url)
-      .then((response) => {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + response.status)
-          return
-        }
-        // Examine the text in the response
-        response
-          .json()
-          .then((data) => data)
+// api calls
+componentDidMount() {
+  fetch(recentApi).then((response) => {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' + response.status)
+      return
+    }
+    response
+      .json()
+      .then((data) => {
+        this.setState({recent: data, recentLoaded: true, apiCalled: true})
       })
-      .catch(function (err) {
-        console.log('Fetch Error :-S', err)
-    })
-}
-  render () {
-    const camperRows = recentText.map((user, index) => {
-      return (<CamperRow
+  })
+  fetch(allTimeApi).then((response) => {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' + response.status)
+      return
+    }
+    response
+      .json()
+      .then((data) => {
+        this.setState({alltime: data, alltimeLoaded: true, apiCalled: true})
+      })
+  }).catch((err) => {
+    console.log('Fetch Error :-S', err)
+  })
+} // componentDidMount
+
+render() {
+  let camperRows = 'campers details coming'
+  if (this.state.apiCalled) {
+    if (this.state.recentLoaded) {
+      camperRows = this.state.recent.map((user, index) => {
+          return (<CamperRow
             position={index + 1}
             name={user.username}
             recentPoints={user.recent}
-            allTimePoints={user.alltime}
-           />)
-    })
+            allTimePoints={user.alltime}/>)
+        })
+    }
+  }
     return (
       <div>
         <h1>Camper Leader Board</h1>

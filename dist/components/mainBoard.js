@@ -57,7 +57,9 @@ render() {
         position={index + 1}
         name={user.username}
         recentPoints={user.recent}
-        allTimePoints={user.alltime}/>)
+        allTimePoints={user.alltime}
+        img={user.img}
+        />)
     })
   }
 

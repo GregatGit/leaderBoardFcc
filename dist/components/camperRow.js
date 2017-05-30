@@ -5,7 +5,10 @@ const CamperRow = (props) => {
   return (
     <tr>
       <th>{props.position}</th>
-      <th>{props.name}</th>
+      <th>
+        <img src={props.img} width="50" height="50"/>
+        {props.name}
+      </th>
       <th>{props.recentPoints}</th>
       <th>{props.allTimePoints}</th>
     </tr>

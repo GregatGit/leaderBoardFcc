@@ -9,8 +9,8 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>My Webpack App</h1>
-        <p>Built and then with react and webpack</p>
+        <h1>Free Code Camp Leaderboard</h1>
+        <p>a freeCodeCamp challange</p>
         <Board />
       </div>
     )

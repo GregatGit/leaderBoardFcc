@@ -70,12 +70,12 @@ render() {
       <p>the list</p>
       <table>
         <tbody>
-          <CamperRow 
-            position='Position'
-            name='Name'
-            recentPoints='Recent Points'
-            allTimePoints='All Time Points'
-          />
+          <tr>
+            <th>Position</th>
+            <th>Camper Username</th>
+            <th>Points - Recent</th>
+            <th>Points All Time</th>
+          </tr>
           {camperRows}
         </tbody>
       </table>

@@ -1,0 +1,8 @@
+$border-color: blue;
+$size: 60px;
+
+.rowImg {
+  border-image: $border-color;
+  height: $size;
+  width: $size;
+}

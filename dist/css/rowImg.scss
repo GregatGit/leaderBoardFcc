@@ -1,8 +1,23 @@
 $border-color: blue;
-$size: 60px;
+$size: 70px;
+$first-box: 70px;
 
 .rowImg {
   border-image: $border-color;
   height: $size;
   width: $size;
+  float: left;
+}
+
+th {
+    border-radius: 4px;
+}
+
+.rowLine {
+  outline: 2px #000;
+  background-color: indigo;
+}
+
+.firstBox {
+  width: $first-box;
 }

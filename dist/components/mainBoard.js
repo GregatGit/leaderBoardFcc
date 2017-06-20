@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import CamperRow from './camperRow'
+import '../css/mainBoardStyles.scss'
+
 const recentApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
 const alltimeApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime'
 
@@ -67,11 +69,11 @@ render() {
     <div>
       <h1>Camper Leader Board</h1>
       <button onClick={this.changeList}>{buttonText}</button>
-      <p>the list</p>
       <table>
         <tbody>
           <tr>
             <th>Position</th>
+            <th></th>
             <th>Camper Username</th>
             <th>Points - Recent</th>
             <th>Points All Time</th>

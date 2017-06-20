@@ -4,7 +4,7 @@ import '../css/rowImg.scss'
 const CamperRow = (props) => {
   let url = `https://freecodecamp.com/${props.name}`
   return (
-    <tr className='rowLine'>
+    <tr className='rowLine' id={props.key}>
       <th className='firstBox'>{props.position}</th>
       <th className='firstBox'>
         <a href={url}target="_blank">

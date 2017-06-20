@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CamperRow from './camperRow'
+import MyButton from './buttons'
 import '../css/mainBoardStyles.scss'
 
 const recentApi = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
@@ -13,7 +14,7 @@ class Board extends Component {
       recentLoaded: false,
       alltimeLoaded: false,
       apiCalled: false,
-      onTheBoard: 'recent'
+      onTheBoard: 'RECENT'
     }
     this.changeList = this.changeList.bind(this)
   }
@@ -36,47 +37,47 @@ componentDidMount() {
 
 changeList () {
   if (this.state.apiCalled){
-    let str = 'alltime'
-    if (this.state.onTheBoard === 'alltime')
-      str = 'recent'
+    let str = 'ALL-TIME'
+    if (this.state.onTheBoard === 'ALL-TIME')
+      str = 'RECENT'
     this.setState({onTheBoard: str})
   }
 }
 
 render() {
   let camperRows = 'campers details coming'
-  let buttonText = 'recent/alltime'
 
-  if (this.state.apiCalled) {
+  if (this.state.alltimeLoaded && this.state.recentLoaded) {
     let myArr = []
-    if (this.state.onTheBoard === 'recent') {
+    if (this.state.onTheBoard === 'RECENT') {
       myArr = this.state.recent
     } else {
       myArr = this.state.alltime
     }
     camperRows = myArr.map((user, index) => {
       return (<CamperRow
+        key={index}
         position={index + 1}
         name={user.username}
         recentPoints={user.recent}
         allTimePoints={user.alltime}
         img={user.img}
-        />)
+      />)
     })
   }
 
   return (
     <div>
       <h1>Camper Leader Board</h1>
-      <button onClick={this.changeList}>{buttonText}</button>
+      <MyButton changeOver={this.changeList} text={this.state.onTheBoard} />
       <table>
         <tbody>
           <tr>
             <th>Position</th>
             <th></th>
-            <th>Camper Username</th>
-            <th>Points - Recent</th>
-            <th>Points All Time</th>
+            <th>Username</th>
+            <th>Points-Recent</th>
+            <th>Points-AllTime</th>
           </tr>
           {camperRows}
         </tbody>

@@ -56,7 +56,7 @@ render() {
     }
     camperRows = myArr.map((user, index) => {
       return (<CamperRow
-        key={index}
+        id={index.toString()}
         position={index + 1}
         name={user.username}
         recentPoints={user.recent}

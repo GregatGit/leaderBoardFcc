@@ -3,12 +3,12 @@ const webpack = require('webpack')
 module.exports = {
   entry: './dist/app.js',
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/docs',
     filename: './bundle.js'
   },
   devServer: {
     inline: true,
-    contentBase: './build',
+    contentBase: './docs',
     port: 3000
   },
   module: {

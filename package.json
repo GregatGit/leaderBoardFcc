@@ -17,6 +17,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.2",
+    "gh-pages": "^1.0.0",
     "jest": "^20.0.4",
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.3",
@@ -26,6 +27,8 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "webpack",
     "start": "webpack-dev-server",
     "test": "jest"
@@ -40,5 +43,5 @@
   "bugs": {
     "url": "https://github.com/GregatGit/leaderBoardFcc/issues"
   },
-  "homepage": "https://github.com/GregatGit/leaderBoardFcc#readme"
+  "homepage": "https://gregatgit.github.io/leaderBoardFcc/"
 }
